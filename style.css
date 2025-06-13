@@ -5,22 +5,22 @@
  Author:       dpavlin
  Author URI:   https://www.ffzg.unizg.hr
  Template:     twentytwentyone
- Version:      1.1.0
+ Version:      1.2.0
 */
 
 /*
  ==========================================================================
-   Kompk Migration Styles
+   Kompk Migration Styles - High Specificity
  ==========================================================================
 */
 
 /* --- 1. Main Layout (Content + Sidebar) --- */
-/* This rule is the most important for the layout. It targets the container
-   for both the main content and the sidebar and arranges them as columns. */
-.site-content {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3%; /* Adjust the gap between content and sidebar */
+/* Using a more specific selector (body .site-content) to ensure
+   this rule overrides any parent theme defaults. */
+body .site-content {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 3%;
 }
 
 /* Make the main content area take up the majority of the space. */
@@ -48,7 +48,7 @@
     border: 1px solid #ccc;
 }
 #secondary .widget_nav_menu .widget-title {
-    display: none; /* Hide the widget title if it exists */
+    display: none;
 }
 #secondary .widget_nav_menu ul {
     list-style: none;
@@ -56,7 +56,7 @@
     padding: 0;
 }
 #secondary .widget_nav_menu li {
-    position: relative; /* Needed for sub-menu positioning */
+    position: relative;
     border-bottom: 1px solid #e0ded4;
 }
 #secondary .widget_nav_menu li:last-child {
@@ -79,17 +79,15 @@
     display: none;
     position: absolute;
     left: 100%;
-    top: -1px; /* Align top border */
+    top: -1px;
     background-color: #F0EFE2;
     border: 1px solid #ccc;
-    min-width: 220px; /* Give the sub-menu enough width */
+    min-width: 220px;
     z-index: 1000;
 }
-/* Show sub-menu on hover */
 #secondary .widget_nav_menu ul li:hover > ul {
     display: block;
 }
-/* Add arrow for items with children */
 #secondary .widget_nav_menu .menu-item-has-children > a::after {
     content: '›';
     float: right;
