@@ -3,42 +3,27 @@
  * Twenty Twenty-One Child Theme Functions
  */
 
-function twentytwentyone_child_theme_setup() {
-    // 1. Add support for a custom logo.
-    add_theme_support( 'custom-logo', array(
-        'height'      => 60,
-        'width'       => 60,
-        'flex-height' => true,
-        'flex-width'  => true,
-    ) );
-
-    // 2. Register our new utility menu for the header.
-    register_nav_menus( array(
-        'utility' => esc_html__( 'Utility Menu', 'twentytwentyone-child' ),
-    ) );
-}
-add_action( 'after_setup_theme', 'twentytwentyone_child_theme_setup' );
-
-// Enqueue parent and child stylesheets correctly
+// Enqueue parent theme's stylesheet
 function twentytwentyone_child_enqueue_styles() {
-    $parent_style_handle = 'twenty-twenty-one-style';
-
-    wp_enqueue_style( $parent_style_handle, get_template_directory_uri() . '/style.css' );
-
-    wp_enqueue_style( 'twentytwentyone-child-style',
-        get_stylesheet_directory_uri() . '/style.css',
-        array( $parent_style_handle ),
-        wp_get_theme()->get('Version')
-    );
+    wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
 }
-add_action( 'wp_enqueue_scripts', 'twentytwentyone_child_enqueue_styles', 20 );
+add_action( 'wp_enqueue_scripts', 'twentytwentyone_child_enqueue_styles' );
+
 
 /**
  * Custom Menu Swapper for Kompk Migration
+ *
+ * This function hooks into the 'wp_nav_menu_args' filter.
+ * It checks if the page being displayed uses our custom English template.
+ * If it does, it forces WordPress to use the 'Main Menu' instead of the default.
  */
 function kompk_swap_english_menu( $args ) {
+    // We only want to modify the 'primary' menu location.
     if ( isset($args['theme_location']) && $args['theme_location'] === 'primary' ) {
+        
+        // Check if we are on a page that is using our custom template.
         if ( is_page_template( 'template-english-section.php' ) ) {
+            // If so, override the menu argument to use the English menu.
             $args['menu'] = 'Main Menu';
         }
     }

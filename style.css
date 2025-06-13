@@ -1,17 +1,9 @@
 /*
  Theme Name:   Twenty Twenty-One Child for Kompk
  Theme URI:    https://www.ffzg.unizg.hr/kompk/
- Description:  Custom child theme for the Kompk website to handle menu swapping and styling.
+ Description:  Custom child theme for the Kompk website to handle menu swapping.
  Author:       dpavlin
  Author URI:   https://www.ffzg.unizg.hr
  Template:     twentytwentyone
- Version:      1.0.1
+ Version:      1.0.0
 */
-
-body {
-    font-family: 'Times New Roman', Times, serif;
-}
-
-.powered-by {
-    display: none; /* Hide default Twenty Twenty-One credits */
-}
