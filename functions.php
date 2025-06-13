@@ -13,7 +13,7 @@ add_action( 'wp_enqueue_scripts', 'twentytwentyone_child_enqueue_styles' );
 
 // --- 2. Disable Block Editor for Widgets (Replaces the 'Classic Widgets' plugin) ---
 function kompk_disable_block_widgets() {
-    remove_theme_support( 'widgets-block-editor' );
+    #remove_theme_support( 'widgets-block-editor' );
 }
 add_action( 'after_setup_theme', 'kompk_disable_block_widgets' );
 
