@@ -41,5 +41,5 @@ if ( have_posts() ) {
 	get_template_part( 'template-parts/content/content-none' );
 
 }
-
+get_sidebar();
 get_footer();
