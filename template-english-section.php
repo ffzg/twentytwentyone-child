@@ -32,4 +32,9 @@ get_header();
 </div><!-- #primary -->
 
 <?php
+// This is the crucial line that calls the sidebar
+get_sidebar(); 
+?>
+
+<?php
 get_footer();
