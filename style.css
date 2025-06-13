@@ -1,0 +1,17 @@
+/*
+ Theme Name:   Twenty Twenty-One Child for Kompk
+ Theme URI:    https://www.ffzg.unizg.hr/kompk/
+ Description:  Custom child theme for the Kompk website to handle menu swapping and styling.
+ Author:       dpavlin
+ Author URI:   https://www.ffzg.unizg.hr
+ Template:     twentytwentyone
+ Version:      1.0.1
+*/
+
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.powered-by {
+    display: none; /* Hide default Twenty Twenty-One credits */
+}
