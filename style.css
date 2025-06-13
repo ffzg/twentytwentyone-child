@@ -7,3 +7,51 @@
  Template:     twentytwentyone
  Version:      1.0.0
 */
+
+/*
+ ==========================================================================
+   Kompk Migration Styles
+ ==========================================================================
+*/
+
+/* --- 1. Global Layout, Colors & Fonts --- */
+body {
+    background-color: #fdfdf8;
+    font-family: 'Times New Roman', Times, serif;
+    color: #333;
+}
+.site {
+    background-color: transparent;
+}
+a {
+    color: #004488;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* --- 2. Main Layout (Content + Sidebar) --- */
+/* This is the container for both your main content and the sidebar */
+.site-content {
+    display: flex; /* This is the key property! */
+    flex-wrap: wrap; /* Allows items to wrap on smaller screens */
+    flex-direction: row-reverse; /* Puts the last item (sidebar) first! */
+    gap: 3%; /* Creates space between the content and sidebar */
+}
+
+#primary { /* Main content area */
+    width: 65%;
+    flex-grow: 1; /* Allows content to take up remaining space */
+}
+
+#secondary { /* Your new sidebar */
+    width: 32%;
+    flex-shrink: 0; /* Prevents the sidebar from shrinking */
+    background-color: #F0EFE2;
+    padding: 20px;
+    border: 1px solid #e0ded4;
+    box-sizing: border-box; /* Ensures padding is included in the width */
+}
+
+/* ... the rest of your CSS for header, widgets, etc. continues here ... */
