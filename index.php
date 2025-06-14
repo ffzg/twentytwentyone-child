@@ -9,4 +9,5 @@ if ( have_posts() ) {
 } else {
 	get_template_part( 'template-parts/content/content-none' );
 }
+get_sidebar();
 get_footer();
