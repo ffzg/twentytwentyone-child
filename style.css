@@ -22,6 +22,11 @@ body #content.site-content {
     gap: 35px; /* Reduced gap between columns */
 }
 
+#masthead {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
 /* --- Column Assignments --- */
 #primary {
     grid-area: main;
