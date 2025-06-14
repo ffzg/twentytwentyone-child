@@ -1,13 +1,13 @@
 /*
  Theme Name:   Twenty Twenty-One Child for Kompk
  Template:     twentytwentyone
- Version:      1.6.0
+ Version:      3.0.0 (Architectural Fix)
 */
 body .site { max-width: 1400px; margin: 0 auto; background-color: #fdfdf8; font-family: "Times New Roman", Times, serif; }
-body .site-content { display: grid; grid-template-columns: 280px 1fr; grid-template-areas: "sidebar main"; gap: 3%; }
+body #content.site-content { display: grid; grid-template-columns: 280px 1fr; grid-template-areas: "main sidebar"; gap: 3%; }
 #primary { grid-area: main; min-width: 0; }
 #secondary { grid-area: sidebar; background-color: #F0EFE2; padding: 20px; border: 1px solid #e0ded4; box-sizing: border-box; }
-@media (max-width: 820px) { body .site-content { display: block; } #primary, #secondary { width: 100%; } }
+@media (max-width: 820px) { body #content.site-content { display: block; } #primary, #secondary { width: 100%; } }
 #secondary .widget_nav_menu { background-color: transparent; padding: 0; border: 1px solid #ccc; }
 #secondary .widget_nav_menu .widget-title { display: none; }
 #secondary .widget_nav_menu ul { list-style: none; margin: 0; padding: 0; }
