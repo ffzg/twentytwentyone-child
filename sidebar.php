@@ -16,14 +16,6 @@ if ( ! is_active_sidebar( 'main-sidebar' ) ) {
 
 <aside id="secondary" class="widget-area">
 
-    <!-- EXAMPLE: Adding custom hard-coded content -->
-    <section id="custom-notice" class="widget widget_text">
-        <h2 class="widget-title">Važna Obavijest</h2>
-        <div class="textwidget">
-            <p>Sve obavijesti o ispitima nalaze se na glavnoj stranici.</p>
-        </div>
-    </section>
-    <!-- End of custom content -->
 
 	<?php dynamic_sidebar( 'main-sidebar' ); // This line loads your widgets from the admin screen ?>
 </aside><!-- #secondary -->

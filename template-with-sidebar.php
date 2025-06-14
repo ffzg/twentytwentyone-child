@@ -8,5 +8,4 @@ while ( have_posts() ) :
 		comments_template();
 	}
 endwhile;
-get_sidebar();
 get_footer();
