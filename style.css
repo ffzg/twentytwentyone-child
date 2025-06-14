@@ -60,5 +60,5 @@ body #content.site-content {
 #secondary .widget_nav_menu .menu-item-has-children > a::after { content: "›"; float: right; font-size: 1.2em; font-weight: bold; margin-top: -2px; }
 body, .entry-title a, .entry-content { color: #333; }
 .site-header { background: transparent !important; }
-#secondary.widget-area { display: block !important; }
+#secondary.widget-area { display: block !important; margin-top: 0 }
 #secondary.widget-area .widget { display: block !important; width: 100% !important; float: none !important; }
