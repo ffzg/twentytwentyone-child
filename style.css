@@ -1,7 +1,7 @@
 /*
  Theme Name:   Twenty Twenty-One Child for Kompk
  Template:     twentytwentyone
- Version:      3.0.0 (Architectural Fix)
+ Version:      3.1.1 (Widget Stack Fix)
 */
 body .site { max-width: 1400px; margin: 0 auto; background-color: #fdfdf8; font-family: "Times New Roman", Times, serif; }
 body #content.site-content { display: grid; grid-template-columns: 280px 1fr; grid-template-areas: "main sidebar"; gap: 3%; }
@@ -20,3 +20,24 @@ body #content.site-content { display: grid; grid-template-columns: 280px 1fr; gr
 #secondary .widget_nav_menu .menu-item-has-children > a::after { content: "›"; float: right; font-size: 1.2em; font-weight: bold; margin-top: -2px; }
 body, .entry-title a, .entry-content { color: #333; }
 .site-header { background: transparent !important; }
+
+/*
+ ==========================================================================
+   Layout Fix: Force Vertical Widget Stacking
+ ==========================================================================
+*/
+
+/* This rule forces the sidebar container itself to be a standard block,
+   overriding any stray 'display: flex' or 'display: grid' from the parent theme. */
+#secondary.widget-area {
+    display: block !important;
+}
+
+/* This rule ensures every widget inside the sidebar is treated as a
+   full-width block, forcing them to stack vertically. */
+#secondary.widget-area .widget {
+    display: block !important;
+    width: 100% !important;
+    float: none !important; /* Also clears any legacy float properties */
+    margin-bottom: 2em; /* Adds spacing between the widgets */
+}
