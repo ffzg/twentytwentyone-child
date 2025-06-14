@@ -1,13 +1,53 @@
 /*
  Theme Name:   Twenty Twenty-One Child for Kompk
  Template:     twentytwentyone
- Version:      3.1.1 (Widget Stack Fix)
+ Version:      6.0.0 (Final Layout Fix)
 */
-body .site { max-width: 1400px; margin: 0 auto; background-color: #fdfdf8; font-family: "Times New Roman", Times, serif; }
-body #content.site-content { display: grid; grid-template-columns: 280px 1fr; grid-template-areas: "main sidebar"; gap: 3%; }
-#primary { grid-area: main; min-width: 0; }
-#secondary { grid-area: sidebar; background-color: #F0EFE2; padding: 20px; border: 1px solid #e0ded4; box-sizing: border-box; }
-@media (max-width: 820px) { body #content.site-content { display: block; } #primary, #secondary { width: 100%; } }
+
+/* --- Global Container --- */
+body .site {
+    max-width: 1200px; /* Reduced max-width for a tighter layout */
+    margin: 0 auto;
+    padding: 0 20px;   /* Reduced outer padding */
+    background-color: #fdfdf8;
+    font-family: "Times New Roman", Times, serif;
+}
+
+/* --- Main Layout Grid --- */
+body #content.site-content {
+    display: grid;
+    /* CORRECTED: "main" area is now defined first, ensuring it appears on the left. */
+    grid-template-areas: "main sidebar";
+    grid-template-columns: 1fr 280px; /* Sidebar fixed, main content flexible */
+    gap: 35px; /* Reduced gap between columns */
+}
+
+/* --- Column Assignments --- */
+#primary {
+    grid-area: main;
+    min-width: 0; /* Prevents overflow issues */
+}
+#secondary {
+    grid-area: sidebar;
+    background-color: #F0EFE2;
+    padding: 20px;
+    border: 1px solid #e0ded4;
+    box-sizing: border-box;
+}
+
+/* --- Responsive Stacking --- */
+@media (max-width: 820px) {
+    body #content.site-content {
+        display: block; /* Stack columns on small screens */
+    }
+    #primary,
+    #secondary {
+        width: 100%;
+    }
+}
+
+/* --- Widget and Link Styling (Unchanged) --- */
+#secondary .widget { margin-bottom: 2em; }
 #secondary .widget_nav_menu { background-color: transparent; padding: 0; border: 1px solid #ccc; }
 #secondary .widget_nav_menu .widget-title { display: none; }
 #secondary .widget_nav_menu ul { list-style: none; margin: 0; padding: 0; }
@@ -20,24 +60,5 @@ body #content.site-content { display: grid; grid-template-columns: 280px 1fr; gr
 #secondary .widget_nav_menu .menu-item-has-children > a::after { content: "›"; float: right; font-size: 1.2em; font-weight: bold; margin-top: -2px; }
 body, .entry-title a, .entry-content { color: #333; }
 .site-header { background: transparent !important; }
-
-/*
- ==========================================================================
-   Layout Fix: Force Vertical Widget Stacking
- ==========================================================================
-*/
-
-/* This rule forces the sidebar container itself to be a standard block,
-   overriding any stray 'display: flex' or 'display: grid' from the parent theme. */
-#secondary.widget-area {
-    display: block !important;
-}
-
-/* This rule ensures every widget inside the sidebar is treated as a
-   full-width block, forcing them to stack vertically. */
-#secondary.widget-area .widget {
-    display: block !important;
-    width: 100% !important;
-    float: none !important; /* Also clears any legacy float properties */
-    margin-bottom: 2em; /* Adds spacing between the widgets */
-}
+#secondary.widget-area { display: block !important; }
+#secondary.widget-area .widget { display: block !important; width: 100% !important; float: none !important; }
