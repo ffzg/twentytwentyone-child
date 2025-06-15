@@ -4,12 +4,41 @@
  Version:      6.0.0 (Final Layout Fix)
 */
 
+/*
+==================================================================
+ Custom Color Palette - Replicating the Original Beige Site
+==================================================================
+*/
+
+:root {
+    /* 1. Define your new color palette using your own variables */
+    --kompk-bg-structure: #E8E6D8;
+    --kompk-bg-content:   #F6F5EC;
+    --kompk-accent-blue:  #004488;
+    --kompk-text-dark:    #333333;
+    --kompk-border-soft:  #DCDAD0;
+
+    /* 2. IMPORTANT: Override the Twenty Twenty-One parent variables */
+    --global--color-background: var(--kompk-bg-content); /* This fixes the green tint */
+    --global--color-primary:    var(--kompk-text-dark);
+    --global--color-secondary:  var(--kompk-text-dark);
+    --global--color-border:     var(--kompk-border-soft);
+}
+
+/* 3. Apply your new colors to the site structure */
+
+
+/* Apply link colors */
+a, .entry-title a, .site-title a {
+    color: var(--kompk-accent-blue);
+}
+
 /* --- Global Container --- */
 body .site {
     max-width: 1200px; /* Reduced max-width for a tighter layout */
     margin: 0 auto;
     padding: 0 20px;   /* Reduced outer padding */
-    background-color: #fdfdf8;
+    background-color: var(--kompk-bg-structure); /* The darker beige for the "frame" */
     font-family: "Times New Roman", Times, serif;
 }
 
@@ -31,12 +60,13 @@ body #content.site-content {
 #primary {
     grid-area: main;
     min-width: 0; /* Prevents overflow issues */
+    background-color: var(--kompk-bg-content);
 }
 #secondary {
     grid-area: sidebar;
-    background-color: #F0EFE2;
+    background-color: transparent; /* It sits on the darker beige, so it needs no color itself */
+    border: none;
     padding: 20px;
-    border: 1px solid #e0ded4;
     box-sizing: border-box;
 }
 
