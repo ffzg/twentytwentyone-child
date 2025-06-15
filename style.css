@@ -67,3 +67,30 @@ body, .entry-title a, .entry-content { color: #333; }
 .site-header { background: transparent !important; }
 #secondary.widget-area { display: block !important; margin-top: 0 }
 #secondary.widget-area .widget { display: block !important; width: 100% !important; float: none !important; }
+
+/* --- Custom Search Widget Layout --- */
+
+/* 1. Hide the "Search..." label from view. */
+/* This method keeps it accessible to screen readers, which is best practice. */
+.widget_search .search-form label {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+/* 2. Use Flexbox on the form to align the input field and button on one line. */
+.widget_search .search-form {
+	display: flex;
+	gap: 5px; /* Optional: adds a small space between the input and button */
+}
+
+/* 3. Make the text input field automatically expand to fill the available space. */
+.widget_search .search-form .search-field {
+	flex-grow: 1;
+	min-width: 0; /* Prevents overflow issues on small screens */
+}
