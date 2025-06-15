@@ -94,3 +94,29 @@ body, .entry-title a, .entry-content { color: #333; }
 	flex-grow: 1;
 	min-width: 0; /* Prevents overflow issues on small screens */
 }
+
+/* --- Custom Header Layout: Logo Left of Title (Validated) --- */
+
+/* A. Style our new wrapper to align the logo and title. */
+.site-branding-wrapper {
+	display: flex;
+	align-items: center; /* Vertically centers the logo and text block. */
+	gap: 20px;           /* Creates space between the logo and text. */
+}
+
+/* B. Remove the default border from the main header. */
+body #masthead.site-header {
+	border-bottom: none;
+}
+
+/* C. Responsive: Stack the logo and title on small screens. */
+@media (max-width: 820px) {
+	.site-branding-wrapper {
+		flex-direction: column; /* Stacks items vertically. */
+		gap: 15px;
+	}
+    /* Optional: Center the text when stacked on mobile. */
+    .site-branding-wrapper .site-branding {
+        text-align: center;
+    }
+}
