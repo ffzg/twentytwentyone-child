@@ -120,3 +120,37 @@ body #masthead.site-header {
         text-align: center;
     }
 }
+
+/*
+==========================================================================
+ 5. Featured Documents Widget Icons
+==========================================================================
+*/
+
+/* Base style for all icons */
+.widget_kompk_featured_docs_widget ul li .doc-icon {
+    display: inline-block;
+    width: 16px;  /* Or 24px, matching your icon size */
+    height: 16px; /* Or 24px, matching your icon size */
+    margin-right: 8px;
+    vertical-align: middle; /* Aligns the icon nicely with the text */
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+/* Specific icon images */
+.doc-icon.doc-icon-pdf {
+    background-image: url('assets/images/icon-pdf.png');
+}
+.doc-icon.doc-icon-doc { /* Catches both .doc and .docx */
+    background-image: url('assets/images/icon-word.png');
+}
+.doc-icon.doc-icon-rtf {
+    background-image: url('assets/images/icon-rtf.png');
+}
+
+/* Fallback: if a specific icon isn't found, it uses this one */
+.doc-icon {
+    background-image: url('assets/images/icon-default.png');
+}

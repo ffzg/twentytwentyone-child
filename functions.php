@@ -101,7 +101,24 @@ class Kompk_Featured_Docs_Widget extends WP_Widget {
             echo '<ul>';
             while ( $attachments->have_posts() ) {
                 $attachments->the_post();
-                echo '<li><a href="' . esc_url( wp_get_attachment_url() ) . '">' . get_the_title() . '</a></li>';
+                //echo '<li><a href="' . esc_url( wp_get_attachment_url() ) . '">' . get_the_title() . '</a></li>';
+                // --- START OF NEW LOGIC ---
+                $file_url = wp_get_attachment_url();
+                // Get the file extension (e.g., 'pdf', 'docx')
+                $file_extension = strtolower( pathinfo( $file_url, PATHINFO_EXTENSION ) );
+    
+                // Normalize Word extensions
+                if ( 'docx' === $file_extension ) {
+                    $file_extension = 'doc';
+                }
+                
+                // Create a specific CSS class for the icon
+                $icon_class = 'doc-icon doc-icon-' . $file_extension;
+                // --- END OF NEW LOGIC ---
+    
+                // Modified output to include a span with the icon class
+                echo '<li><span class="' . esc_attr( $icon_class ) . '"></span><a href="' . esc_url( $file_url ) . '">' . get_the_title() . '</a></li>';
+
             }
             echo '</ul>';
         } else {
