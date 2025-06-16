@@ -1,14 +1,44 @@
 /*
  Theme Name:   Twenty Twenty-One Child for Kompk
  Template:     twentytwentyone
- Version:      6.0.1
+ Version:      6.0.2
 
  keep version number clean of comments, it's included in urls
 */
 
-.entry-title {
-    font-size: 2.1rem !important; /* The default is much larger. Adjust this value if needed. */
+/*
+==========================================================================
+ 5. Typography Adjustments (v3 - Specificity Fix)
+==========================================================================
+*/
+
+/* --- Decrease Entry Title Font Size --- */
+
+/*
+ * We are matching the parent theme's selector specificity to ensure
+ * our rule is applied correctly without needing !important.
+*/
+
+/* For single posts and pages */
+.singular .entry-header .entry-title {
+    font-size: 2.2rem;
+    line-height: 1.2;
 }
+
+/* For homepage, archives, and search results */
+.entry-title a {
+    font-size: 2.2rem;
+    line-height: 1.2;
+}
+
+/* --- Responsive adjustment for smaller screens --- */
+@media (max-width: 700px) {
+    .singular .entry-header .entry-title,
+    .entry-title a {
+        font-size: 1.8rem;
+    }
+}
+
 
 /* --- Global Container --- */
 body .site {
