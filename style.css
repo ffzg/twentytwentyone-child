@@ -1,8 +1,14 @@
 /*
  Theme Name:   Twenty Twenty-One Child for Kompk
  Template:     twentytwentyone
- Version:      6.0.0 (Final Layout Fix)
+ Version:      6.0.1
+
+ keep version number clean of comments, it's included in urls
 */
+
+.entry-title {
+    font-size: 2.1rem !important; /* The default is much larger. Adjust this value if needed. */
+}
 
 /* --- Global Container --- */
 body .site {
