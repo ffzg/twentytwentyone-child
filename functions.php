@@ -198,25 +198,36 @@ add_filter( 'manage_upload_sortable_columns', 'kompk_make_media_category_column_
 
 /**
  * Action 1: Add a category filter dropdown to the Media Library admin page.
+ * This version is optimized to show ONLY the 'Featured Documents' category.
  */
 function kompk_add_media_category_filter() {
     global $pagenow;
     // Only show this on the main Media Library page (upload.php)
     if ( 'upload.php' === $pagenow ) {
-        $dropdown_options = array(
-            'show_option_all' => 'Sve kategorije',
-            'taxonomy'        => 'category',
-            'name'            => 'cat',
-            'orderby'         => 'name',
-            'selected'        => ( isset($_GET['cat']) ? $_GET['cat'] : 0 ),
-            'hierarchical'    => true,
-            'show_count'      => true,
-            'hide_empty'      => false, // Show our category even if it has 0 items
-        );
-        wp_dropdown_categories( $dropdown_options );
+        
+        $category_slug = 'istaknuti-dokumenti'; // The slug of our special category
+        $category = get_term_by('slug', $category_slug, 'category');
+        
+        // Check if our category exists before trying to display it
+        if (!$category) {
+            return; // Don't show the filter if the category hasn't been created yet
+        }
+
+        $current_cat_id = isset($_GET['cat']) ? (int)$_GET['cat'] : 0;
+        
+        // Manually build the HTML for the dropdown
+        echo '<select name="cat" id="cat" class="postform">';
+        echo '<option value="0">Sve kategorije</option>';
+        
+        // Add our specific category to the dropdown
+        $selected_attr = ($current_cat_id === $category->term_id) ? ' selected="selected"' : '';
+        echo '<option value="' . esc_attr($category->term_id) . '"' . $selected_attr . '>' . esc_html($category->name) . '</option>';
+        
+        echo '</select>';
     }
 }
 add_action( 'restrict_manage_posts', 'kompk_add_media_category_filter' );
+
 
 /**
  * Action 2: Process the filter when the user clicks the "Filter" button.
