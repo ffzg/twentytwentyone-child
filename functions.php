@@ -189,3 +189,48 @@ function kompk_make_media_category_column_sortable( $columns ) {
 }
 add_filter( 'manage_upload_sortable_columns', 'kompk_make_media_category_column_sortable' );
 
+
+/**
+ * ===================================================================
+ * Add Media Library Filtering by Category for Featured Documents
+ * ===================================================================
+ */
+
+/**
+ * Action 1: Add a category filter dropdown to the Media Library admin page.
+ */
+function kompk_add_media_category_filter() {
+    global $pagenow;
+    // Only show this on the main Media Library page (upload.php)
+    if ( 'upload.php' === $pagenow ) {
+        $dropdown_options = array(
+            'show_option_all' => 'Sve kategorije',
+            'taxonomy'        => 'category',
+            'name'            => 'cat',
+            'orderby'         => 'name',
+            'selected'        => ( isset($_GET['cat']) ? $_GET['cat'] : 0 ),
+            'hierarchical'    => true,
+            'show_count'      => true,
+            'hide_empty'      => false, // Show our category even if it has 0 items
+        );
+        wp_dropdown_categories( $dropdown_options );
+    }
+}
+add_action( 'restrict_manage_posts', 'kompk_add_media_category_filter' );
+
+/**
+ * Action 2: Process the filter when the user clicks the "Filter" button.
+ */
+function kompk_filter_media_by_category_query( $query ) {
+    global $pagenow;
+    // Check this is the main query on the upload.php admin page
+    if ( is_admin() && $query->is_main_query() && 'upload.php' === $pagenow ) {
+        $category_id = isset($_GET['cat']) ? intval($_GET['cat']) : 0;
+        
+        if ( $category_id > 0 ) {
+            $query->set( 'cat', $category_id );
+        }
+    }
+}
+add_action( 'pre_get_posts', 'kompk_filter_media_by_category_query' );
+
