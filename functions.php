@@ -245,3 +245,51 @@ function kompk_filter_media_by_category_query( $query ) {
 }
 add_action( 'pre_get_posts', 'kompk_filter_media_by_category_query' );
 
+
+/**
+ * Output rel="canonical" for all non-singular views (front page, blog index,
+ * pagination, archives) to resolve duplicate indexing in search engines and
+ * strip crawler parameter pollution.
+ */
+function kompk_rel_canonical() {
+    if ( is_singular() ) {
+        return; // WordPress core rel_canonical() handles singular posts/pages
+    }
+
+    $canonical_url = '';
+
+    if ( is_front_page() || is_home() ) {
+        $paged = get_query_var( 'paged' );
+        if ( $paged > 1 ) {
+            $canonical_url = get_pagenum_link( $paged );
+        } else {
+            $canonical_url = home_url( '/' );
+        }
+    } elseif ( is_category() || is_tag() || is_tax() ) {
+        $term = get_queried_object();
+        if ( $term && ! is_wp_error( $term ) ) {
+            $term_link = get_term_link( $term );
+            if ( ! is_wp_error( $term_link ) ) {
+                $paged = get_query_var( 'paged' );
+                if ( $paged > 1 ) {
+                    $canonical_url = get_pagenum_link( $paged );
+                } else {
+                    $canonical_url = $term_link;
+                }
+            }
+        }
+    } elseif ( is_archive() ) {
+        $paged = get_query_var( 'paged' );
+        if ( $paged > 1 ) {
+            $canonical_url = get_pagenum_link( $paged );
+        }
+    }
+
+    if ( ! empty( $canonical_url ) ) {
+        $clean_url = strtok( $canonical_url, '?' );
+        echo '<link rel="canonical" href="' . esc_url( $clean_url ) . '" />' . "\n";
+    }
+}
+add_action( 'wp_head', 'kompk_rel_canonical', 5 );
+
+
